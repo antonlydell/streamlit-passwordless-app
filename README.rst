@@ -1,6 +1,9 @@
 streamlit-passwordless-app
 ==========================
 
+|Streamlit|
+
+
 A Streamlit application to showcase the `streamlit-passwordless`_ library.
 
 .. _streamlit-passwordless: https://github.com/antonlydell/streamlit-passwordless
@@ -41,7 +44,7 @@ Run the app with the command:
 
 .. code-block:: bash
 
-   ~/stp_app (.venv) $ python -m streamlit run streamlit_passwordless_app/main.py
+   ~/stp_app (.venv) $ python -m streamlit run main.py
 
    You can now view your Streamlit app in your browser.
 
@@ -57,3 +60,9 @@ License
 streamlit-passwordless-app is distributed under the `MIT-license`_.
 
 .. _MIT-license: https://opensource.org/licenses/mit-license.php
+
+
+.. |Streamlit| image:: https://static.streamlit.io/badges/streamlit_badge_black_white.svg
+   :alt: Streamlit Passwordless on Streamlit Community Cloud
+   :scale: 100%
+   :target: https://passwordless.streamlit.app
