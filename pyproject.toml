@@ -30,8 +30,6 @@ keywords = ["Bitwarden", "FIDO2", "Passkey", "Passwordless", "Streamlit", "strea
 
 dynamic = ["version"]
 
-dependencies = ["streamlit_passwordless >= 0.3"]
-
 
 [project.urls]
 "Bug Tracker" = "https://github.com/antonlydell/streamlit-passwordless-app/issues"
