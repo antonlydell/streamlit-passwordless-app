@@ -52,6 +52,40 @@ STP_PRIVATE_KEY = 'STP_PRIVATE_KEY'
 
 
 # =====================================================================================
+# Configuration
+# =====================================================================================
+
+
+class ConfigManager:
+    r"""The configuration manager that manages the application's configuration.
+
+    Parameters
+    ----------
+    public_key : str
+        The public key to Bitwarden Passwordless.dev.
+
+    private_key : str
+        The private key to Bitwarden Passwordless.dev.
+
+    db_url : str
+        The SQLAlchemy database url to the streamlit-passwordless user database.
+    """
+
+    __slots__ = ('public_key', 'private_key', 'db_url')
+
+    def __init__(self, public_key: str, private_key: str, db_url: str) -> None:
+        self.public_key = public_key
+        self.private_key = private_key
+        self.db_url = db_url
+
+    def __repr__(self) -> str:
+        return f'{self.__class__.__name__}(public_key=***, private_key=***, db_url={self.db_url})'
+
+    def __str__(self) -> str:
+        return self.__repr__()
+
+
+# =====================================================================================
 # Functions
 # =====================================================================================
 
