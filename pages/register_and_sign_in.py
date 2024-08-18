@@ -7,11 +7,12 @@ import logging
 import streamlit as st
 import streamlit_passwordless as stp
 
+# Local
 from streamlit_passwordless_app.config import (
     APP_HOME_PAGE_URL,
     APP_ISSUES_PAGE_URL,
     MAINTAINER_INFO,
-    create_bitwarden_passwordless_client,
+    setup,
 )
 from streamlit_passwordless_app.controllers.register_and_sign_in import controller
 
@@ -44,13 +45,15 @@ def main() -> None:
         stp.init_session_state()
 
     try:
-        client = create_bitwarden_passwordless_client()
+        _, client, session_factory = setup()
     except stp.StreamlitPasswordlessError as e:
-        logger.error(str(e))
-        st.error('Error creating BitwardenPasswordlessClient!', icon=stp.ICON_ERROR)
+        error_msg = f'Could not setup the application resources correctly!\n{str(e)}'
+        logger.error(error_msg)
+        st.error(error_msg, icon=stp.ICON_ERROR)
         return
 
-    controller(client=client)
+    with session_factory.begin() as session:
+        controller(client=client, db_session=session)
 
 
 if __name__ == "__main__":
