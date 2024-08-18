@@ -123,9 +123,10 @@ def load_config() -> ConfigManager:
     return ConfigManager(private_key=private_key, public_key=public_key, db_url=db_url)
 
 
-@st.cache_resource(ttl=timedelta(days=7), show_spinner=False)
-def create_bitwarden_passwordless_client() -> stp.BitwardenPasswordlessClient:
+@st.cache_data(ttl=timedelta(days=7), show_spinner=False)
+def create_bitwarden_passwordless_client(
+    private_key: str, public_key: str
+) -> stp.BitwardenPasswordlessClient:
     r"""Create the client to communicate with Bitwarden Passwordless.dev."""
 
-    public_key, private_key = load_bitwarden_passwordless_credentials()
     return stp.BitwardenPasswordlessClient(public_key=public_key, private_key=private_key)
