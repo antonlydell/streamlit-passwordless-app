@@ -130,3 +130,15 @@ def create_bitwarden_passwordless_client(
     r"""Create the client to communicate with Bitwarden Passwordless.dev."""
 
     return stp.BitwardenPasswordlessClient(public_key=public_key, private_key=private_key)
+
+
+def setup() -> tuple[ConfigManager, stp.BitwardenPasswordlessClient, stp.db.core.SessionFactory]:
+    r"""Setup the resources needed by the application."""
+
+    cm = load_config()
+    client = create_bitwarden_passwordless_client(
+        private_key=cm.private_key, public_key=cm.public_key
+    )
+    session_factory = stp.db.create_session_factory(url=cm.db_url)
+
+    return cm, client, session_factory
