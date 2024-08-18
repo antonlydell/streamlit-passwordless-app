@@ -49,6 +49,7 @@ class Pages(StrEnum):
 STP_SECRETS_SECTION = 'streamlit-passwordless'
 STP_PUBLIC_KEY = 'STP_PUBLIC_KEY'
 STP_PRIVATE_KEY = 'STP_PRIVATE_KEY'
+STP_DB_URL = 'STP_DB_URL'
 
 
 # =====================================================================================
@@ -91,18 +92,35 @@ class ConfigManager:
 
 
 @st.cache_resource(ttl=timedelta(days=7), show_spinner=False)
-def load_bitwarden_passwordless_credentials() -> tuple[str, str]:
-    r"""Load the public and private key for Bitwarden Passwordless.dev."""
+def load_config() -> ConfigManager:
+    r"""Load the application's configuration.
+
+    Returns
+    -------
+    ConfigManager
+        The loaded configuration.
+
+    Raises
+    ------
+    streamlit_passwordless.StreamlitPasswordlessError
+        If the required configuration could not be found.
+    """
 
     public_key = st.secrets.get(STP_SECRETS_SECTION, {}).get(STP_PUBLIC_KEY)
     private_key = st.secrets.get(STP_SECRETS_SECTION, {}).get(STP_PRIVATE_KEY)
+    db_url = st.secrets.get(STP_SECRETS_SECTION, {}).get(STP_DB_URL)
 
     if public_key is None or private_key is None:
         error_msg = 'Bitwarden Passwordless credentials not found! Check your configuration.'
         logger.error(error_msg)
-        stp.StreamlitPasswordlessError(error_msg)
+        raise stp.StreamlitPasswordlessError(error_msg)
 
-    return public_key, private_key
+    if db_url is None:
+        error_msg = 'streamlit-passwordless database url not found! Check your configuration.'
+        logger.error(error_msg)
+        raise stp.StreamlitPasswordlessError(error_msg)
+
+    return ConfigManager(private_key=private_key, public_key=public_key, db_url=db_url)
 
 
 @st.cache_resource(ttl=timedelta(days=7), show_spinner=False)
