@@ -35,10 +35,12 @@ Streamlit secrets' file. Paste the contents below into the file:
    [streamlit-passwordless]
    STP_PUBLIC_KEY = '<PUBLIC_KEY>'
    STP_PRIVATE_KEY = '<PRIVATE_KEY>'
+   STP_DB_URL = '<DB_URL>'
 
 
-``'<PUBLIC_KEY>'`` and ``'<PRIVATE_KEY>'`` should be replaced to the public key and secret key
-of your Bitwarden Passwordless.dev account respectivley.
+``<PUBLIC_KEY>`` and ``<PRIVATE_KEY>`` should be replaced to the public key and secret key
+of your Bitwarden Passwordless.dev account respectivley. Replace ``<DB_URL>`` with the SQLAlchemy
+database url to the streamlit-passwordless user database.
 
 Run the app with the command:
 
