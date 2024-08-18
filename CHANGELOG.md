@@ -9,6 +9,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [2.0.0] - 2024-08-18
+
+Support for streamlit-passwordless user database!
+
+The application can now work with the streamlit-passwordless user database that was introduced in
+streamlit-passwordless [v0.6.0](https://github.com/antonlydell/streamlit-passwordless/releases/tag/v0.6.0).
+The configuration now requires the key `STP_DB_URL` with the SQLAlchemy database url to the streamlit-passwordless
+user database. Added improvements to the application's configuration management.
+
+
+### Added
+
+- `config.ConfigManager` : The configuration manager that manages the application's configuration.
+
+- `config.setup` : Setup the resources needed by the application.
+
+
+### Changed
+
+- `config.load_bitwarden_passwordless_credentials` : The function now loads the application's
+  configuration and not just the credentials for Bitwarden Passwordless.dev.
+  Renamed function to `load_config`.
+
+- `config.create_bitwarden_passwordless_client` : The private and public key to
+  Bitwarden Passwordless.dev are now input as parameters. The function is now cached with
+  `st.cache_data` to ensure each user gets a unique instance of `streamlit_passwordless.BitwardenPasswordlessClient`
+  and its underlying `requests.Session` object.
+
+
 ## [1.1.0] - 2024-05-15
 
 Register and sign in from an iPhone!
@@ -49,7 +78,8 @@ and sign in a simple view on the home page of the app is available to the user w
 signed in user. In the sidebar there is a button to sign out from the app.
 
 
-[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.0
 [1.1.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v1.1.0
 [1.0.1]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v1.0.1
 [1.0.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v1.0.0
