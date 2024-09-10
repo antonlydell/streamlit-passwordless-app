@@ -25,4 +25,4 @@ def register_and_sign_in_section(
     with register_tab:
         stp.bitwarden_register_form(client=client, db_session=db_session)
     with signin_in_tab:
-        stp.bitwarden_sign_in_form(client=client, with_alias=False)
+        stp.bitwarden_sign_in_form(client=client, db_session=db_session, with_alias=False)
