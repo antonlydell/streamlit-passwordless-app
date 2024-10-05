@@ -4,8 +4,7 @@ r"""Contains the authentication logic of the app."""
 
 # Third party
 import streamlit as st
-from streamlit_passwordless import BitwardenPasswordlessVerifiedUser
-from streamlit_passwordless.components.config import SK_BP_VERIFIED_USER
+import streamlit_passwordless as stp
 
 # Local
 from .config import Pages
@@ -13,7 +12,7 @@ from .config import Pages
 
 def is_authenticated(
     redirect: bool = False,
-) -> tuple[bool, BitwardenPasswordlessVerifiedUser | None]:
+) -> tuple[bool, stp.UserSignIn | None]:
     r"""Check if a user is authenticated.
 
     Parameters
@@ -28,22 +27,25 @@ def is_authenticated(
     bool
         True if the user is authenticated and False otherwise.
 
-    BitwardenPasswordlessVerifiedUser or None
-        The user object. None is returned if the user has not attempted to sign in yet.
+    streamlit_passwordless.UserSignIn or None
+        Details from Bitwarden Passwordless about the user that signed in.
+        None is returned if the user has not attempted to sign in yet.
     """
 
-    verified_user = st.session_state.get(SK_BP_VERIFIED_USER)
+    sign_in = st.session_state.get(stp.SK_USER_SIGN_IN)
 
-    if verified_user is None or not verified_user.success:
+    if sign_in is None or not sign_in.success:
         if redirect:
             st.switch_page(Pages.REGISTER_AND_SIGN_IN)
         else:
-            return False, verified_user
+            return False, sign_in
     else:
-        return True, verified_user
+        return True, sign_in
 
 
 def sign_out() -> None:
     r"""Sign out the authenticated user."""
 
-    st.session_state[SK_BP_VERIFIED_USER] = None
+    if (user := st.session_state.get(stp.SK_USER)) is not None:
+        user.sign_in = None
+    st.session_state[stp.SK_USER_SIGN_IN] = None

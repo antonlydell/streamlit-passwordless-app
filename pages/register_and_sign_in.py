@@ -52,7 +52,7 @@ def main() -> None:
         st.error(error_msg, icon=stp.ICON_ERROR)
         return
 
-    with session_factory.begin() as session:
+    with session_factory() as session:
         controller(client=client, db_session=session)
 
 

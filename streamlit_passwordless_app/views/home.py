@@ -22,9 +22,7 @@ def streamlit_passwordless_info_section(text: str) -> None:
     st.divider()
 
 
-def user_details_list(
-    user: stp.BitwardenPasswordlessVerifiedUser, header: str | None = '## User Info'
-) -> None:
+def user_details_list(user: stp.UserSignIn, header: str | None = '## User Info') -> None:
     r"""Render the user details in a list form."""
 
     sign_in_timestamp = user.sign_in_timestamp.strftime(r'%Y-%m-%d %H:%M:%S %Z')
