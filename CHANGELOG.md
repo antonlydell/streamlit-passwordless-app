@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [2.0.2] - 2024-10-05
+
+Bug fix for application requirements!
+
+
+### Fixed
+
+- Typo in pinned version of streamlit-passwordless in requirements.txt.
+
+
+## [2.0.1] - 2024-10-05
+
+Adding support for streamlit-passwordless version 0.8.0!
+
+
 ## [2.0.0] - 2024-08-18
 
 Support for streamlit-passwordless user database!
@@ -78,7 +93,9 @@ and sign in a simple view on the home page of the app is available to the user w
 signed in user. In the sidebar there is a button to sign out from the app.
 
 
-[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.0.2...HEAD
+[2.0.2]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.2
+[2.0.1]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.1
 [2.0.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.0
 [1.1.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v1.1.0
 [1.0.1]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v1.0.1
