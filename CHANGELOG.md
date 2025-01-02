@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [2.1.0] - 2025-01-02
+
+Added support for streamlit-passwordless version 0.11.0!
+
+Added the possibility for the user to register additional passkeys after the user has signed in.
+Updated the user info section with more details about the signed in user.
+Added support to create discoverable or non-discoverable passkeys.
+
+
 ## [2.0.2] - 2024-10-05
 
 Bug fix for application requirements!
@@ -93,7 +102,8 @@ and sign in a simple view on the home page of the app is available to the user w
 signed in user. In the sidebar there is a button to sign out from the app.
 
 
-[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.0.2...HEAD
+[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.1.0
 [2.0.2]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.2
 [2.0.1]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.1
 [2.0.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.0
