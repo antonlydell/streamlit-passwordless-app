@@ -12,7 +12,7 @@ from .config import Pages
 
 def is_authenticated(
     redirect: bool = False,
-) -> tuple[bool, stp.UserSignIn | None]:
+) -> tuple[bool, stp.User | None]:
     r"""Check if a user is authenticated.
 
     Parameters
@@ -27,20 +27,20 @@ def is_authenticated(
     bool
         True if the user is authenticated and False otherwise.
 
-    streamlit_passwordless.UserSignIn or None
-        Details from Bitwarden Passwordless about the user that signed in.
-        None is returned if the user has not attempted to sign in yet.
+    streamlit_passwordless.User or None
+        The user that signed in. None is returned if the user has
+        not attempted to sign in yet.
     """
 
-    sign_in = st.session_state.get(stp.SK_USER_SIGN_IN)
+    user = st.session_state.get(stp.SK_USER)
 
-    if sign_in is None or not sign_in.success:
+    if user is None or not user.is_authenticated:
         if redirect:
             st.switch_page(Pages.REGISTER_AND_SIGN_IN)
         else:
-            return False, sign_in
+            return False, user
     else:
-        return True, sign_in
+        return True, user
 
 
 def sign_out() -> None:
