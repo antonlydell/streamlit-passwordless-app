@@ -43,7 +43,9 @@ def app() -> None:
 
     _, session_factory, client = stp.setup(create_database=True)
 
-    controller(about=ABOUT)
+    with session_factory() as session:
+        stp.db.init(_session=session)
+        controller(client=client, db_session=session, about=ABOUT)
 
 
 if __name__ == "__main__":
