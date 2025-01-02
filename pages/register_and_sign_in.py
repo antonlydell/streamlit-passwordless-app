@@ -12,7 +12,6 @@ from streamlit_passwordless_app.config import (
     APP_HOME_PAGE_URL,
     APP_ISSUES_PAGE_URL,
     MAINTAINER_INFO,
-    setup,
 )
 from streamlit_passwordless_app.controllers.register_and_sign_in import controller
 
@@ -41,11 +40,8 @@ def main() -> None:
         },
     )
 
-    if not st.session_state:
-        stp.init_session_state()
-
     try:
-        _, client, session_factory = setup()
+        _, session_factory, client = stp.setup(create_database=True)
     except stp.StreamlitPasswordlessError as e:
         error_msg = f'Could not setup the application resources correctly!\n{str(e)}'
         logger.error(error_msg)
@@ -53,6 +49,7 @@ def main() -> None:
         return
 
     with session_factory() as session:
+        stp.db.init(_session=session)
         controller(client=client, db_session=session)
 
 

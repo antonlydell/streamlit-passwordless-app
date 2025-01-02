@@ -41,10 +41,11 @@ def app() -> None:
         },
     )
 
-    if not st.session_state:
-        stp.init_session_state()
+    _, session_factory, client = stp.setup(create_database=True)
 
-    controller(about=ABOUT)
+    with session_factory() as session:
+        stp.db.init(_session=session)
+        controller(client=client, db_session=session, about=ABOUT)
 
 
 if __name__ == "__main__":
