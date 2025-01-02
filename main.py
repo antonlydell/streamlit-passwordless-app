@@ -41,8 +41,7 @@ def app() -> None:
         },
     )
 
-    if not st.session_state:
-        stp.init_session_state()
+    _, session_factory, client = stp.setup(create_database=True)
 
     controller(about=ABOUT)
 
