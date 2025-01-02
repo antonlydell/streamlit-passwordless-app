@@ -10,7 +10,7 @@ from streamlit_passwordless_app.components.sidebars import sidebar
 from streamlit_passwordless_app.views.home import (
     streamlit_passwordless_info_section,
     title,
-    user_details_list,
+    user_info_section,
 )
 
 
@@ -28,4 +28,4 @@ def controller(about: str) -> None:
     sidebar(is_authenticated=authenticated)
     title()
     streamlit_passwordless_info_section(text=about)
-    user_details_list(user=user)
+    user_info_section(user=user)
