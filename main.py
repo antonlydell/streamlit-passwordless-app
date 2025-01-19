@@ -12,6 +12,7 @@ from streamlit_passwordless_app.config import (
     APP_ISSUES_PAGE_URL,
     MAINTAINER_INFO,
     STP_GITHUB_URL,
+    Pages,
 )
 from streamlit_passwordless_app.controllers.home import controller
 
@@ -27,6 +28,7 @@ to a Streamlit application using the passkey FIDO2 and WebAuthn protocols.
 ABOUT_PAGE_CONFIG = f'{ABOUT}\n{MAINTAINER_INFO}'
 
 
+@stp.authorized(redirect=Pages.REGISTER_AND_SIGN_IN)
 def app() -> None:
     r"""The main function to run the home page of the app."""
 
@@ -41,7 +43,7 @@ def app() -> None:
         },
     )
 
-    _, session_factory, client = stp.setup(create_database=True)
+    client, session_factory, _ = stp.setup(create_database=True)
 
     with session_factory() as session:
         stp.db.init(_session=session)

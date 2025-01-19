@@ -7,7 +7,6 @@ import streamlit as st
 import streamlit_passwordless as stp
 
 # Local
-from streamlit_passwordless_app.auth import is_authenticated
 from streamlit_passwordless_app.components.sidebars import sidebar
 from streamlit_passwordless_app.views.home import (
     streamlit_passwordless_info_section,
@@ -34,8 +33,8 @@ def controller(
         in the streamlit-passwordless info section.
     """
 
-    authenticated, user = is_authenticated(redirect=True)
-    sidebar(is_authenticated=authenticated)
+    user = st.session_state.get(stp.SK_USER)
+    sidebar(user=user)
     title()
     streamlit_passwordless_info_section(text=about)
 

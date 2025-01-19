@@ -40,13 +40,7 @@ def main() -> None:
         },
     )
 
-    try:
-        _, session_factory, client = stp.setup(create_database=True)
-    except stp.StreamlitPasswordlessError as e:
-        error_msg = f'Could not setup the application resources correctly!\n{str(e)}'
-        logger.error(error_msg)
-        st.error(error_msg, icon=stp.ICON_ERROR)
-        return
+    client, session_factory, _ = stp.setup(create_database=True)
 
     with session_factory() as session:
         stp.db.init(_session=session)
