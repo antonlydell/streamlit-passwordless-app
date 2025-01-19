@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 
+## [2.2.0] - 2025-01-19
+
+Added support for streamlit-passwordless version 0.12.0!
+
+Updated register and sign in page and improvements to the authentication workflow.
+
+
+### Changed
+
+- The register and sign in tabs on the register and sign in page have been merged and the sign in
+button is now placed below the register form. This looks more elegant.
+
+
 ## [2.1.0] - 2025-01-02
 
 Added support for streamlit-passwordless version 0.11.0!
@@ -102,7 +115,8 @@ and sign in a simple view on the home page of the app is available to the user w
 signed in user. In the sidebar there is a button to sign out from the app.
 
 
-[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.1.0...HEAD
+[Unreleased]: https://github.com/antonlydell/streamlit-passwordless-app/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.2.0
 [2.1.0]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.1.0
 [2.0.2]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.2
 [2.0.1]: https://github.com/antonlydell/streamlit-passwordless-app/releases/tag/v2.0.1
