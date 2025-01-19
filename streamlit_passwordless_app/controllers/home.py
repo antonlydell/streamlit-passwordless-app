@@ -46,6 +46,5 @@ def controller(
         stp.bitwarden_register_form_existing_user(
             client=client,
             db_session=db_session,
-            with_discoverability=True,
             title='#### Register a new passkey',
         )
