@@ -4,28 +4,27 @@ r"""The sidebar components."""
 
 # Third party
 import streamlit as st
+import streamlit_passwordless as stp
 
 # Local
 from streamlit_passwordless_app.config import Pages
 
-from .buttons import sign_out_button
 
-
-def sidebar(is_authenticated: bool = False) -> None:
+def sidebar(user: stp.User | None) -> None:
     r"""Render the sidebar of the application.
 
     Parameters
     ----------
-    is_authenticated : bool, default False
-        If True the user is authenticated and the sidebar should be rendered
-        otherwise the sidebar is not rendered.
+    user : streamlit_passwordless.User or None
+        The signed in user. If None the user has not signed in yet.
     """
 
-    if not is_authenticated:
+    if user is None or not user.is_authenticated:
         return
 
     with st.sidebar:
-        if sign_out_button():
+        clicked, _ = stp.sign_out_button()
+        if clicked:
             return
         st.divider()
         st.markdown('### Navigation')

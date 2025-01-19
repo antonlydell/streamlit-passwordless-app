@@ -3,10 +3,10 @@ r"""The page controller of the register and sign in page."""
 # Standard library
 
 # Third party
+import streamlit as st
 import streamlit_passwordless as stp
 
 # Local
-from streamlit_passwordless_app.auth import is_authenticated
 from streamlit_passwordless_app.components.sidebars import sidebar
 from streamlit_passwordless_app.views.home import title
 from streamlit_passwordless_app.views.register_and_sign_in import register_and_sign_in_section
@@ -26,5 +26,4 @@ def controller(client: stp.BitwardenPasswordlessClient, db_session: stp.db.Sessi
 
     title()
     register_and_sign_in_section(client=client, db_session=db_session)
-    authenticated, _ = is_authenticated()
-    sidebar(is_authenticated=authenticated)
+    sidebar(user=st.session_state.get(stp.SK_USER))

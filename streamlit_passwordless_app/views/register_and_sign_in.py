@@ -6,6 +6,9 @@ r"""The views of the register and sign in page."""
 import streamlit as st
 import streamlit_passwordless as stp
 
+# Local
+from streamlit_passwordless_app.config import Pages
+
 
 def register_and_sign_in_section(
     client: stp.BitwardenPasswordlessClient, db_session: stp.db.Session
@@ -21,10 +24,10 @@ def register_and_sign_in_section(
         An active session to the streamlit-passwordless user database.
     """
 
-    register_tab, signin_in_tab = st.tabs(["Register", "Sign in"])
-    with register_tab:
+    with st.container(border=True):
         stp.bitwarden_register_form(
-            client=client, db_session=db_session, with_displayname=True, with_discoverability=True
+            client=client, db_session=db_session, with_displayname=True, border=False
         )
-    with signin_in_tab:
-        stp.bitwarden_sign_in_form(client=client, db_session=db_session, with_alias=False)
+        st.divider()
+        st.write('Already have an account?')
+        stp.bitwarden_sign_in_button(client=client, db_session=db_session, redirect=Pages.HOME)
