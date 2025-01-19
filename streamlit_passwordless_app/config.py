@@ -18,6 +18,7 @@ MAINTAINER_INFO = f"""\
 
 APP_HOME_PAGE_URL = 'https://github.com/antonlydell/streamlit-passwordless-app'
 APP_ISSUES_PAGE_URL = 'https://github.com/antonlydell/streamlit-passwordless-app/issues'
+BITWARDEN_PASSWORDLESS_URL = 'https://bitwarden.com/products/passwordless'
 STP_GITHUB_URL = 'https://github.com/antonlydell/streamlit-passwordless'
 
 
